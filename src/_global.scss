@@ -1,6 +1,7 @@
 .main-wrap {
     height: 100vh;
     font-family: "Work Sans", serif;
+      background : linear-gradient(132deg, #EFEACC, #F1F1F1, #F2E7EE);
 
     .data-table--wrapper {
         height: 84vh;
@@ -8,39 +9,95 @@
         position: relative;
         padding: 10px 0;
     }
-    .mobile-view{
+
+    .mobile-view {
         display: none;
-        @media(max-width: 768px){
+
+        @media(max-width: 768px) {
             display: block;
         }
     }
 
-    .desktop-view{
+    .desktop-view {
         display: block;
-        @media(max-width: 768px){
+
+        @media(max-width: 768px) {
             display: none;
         }
     }
-    .card-header{
+
+    .card-header {
         display: flex;
         align-items: center;
         // justify-content: space-between
+
     }
-    .section--wrapper{
+
+    .password-show {
+        position: absolute;
+        right: 42px;
+        top: 50%;
+        transform: translate(0, -50%);
+        z-index: 5;
+        height: 30px;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &.active{
+
+                background-color: #e3eeff;
+            }
+
+        }
+    }
+
+    .card-section-title {
+        font-size: 12px;
+        font-weight: 600;
+        color: #7e7e7e;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+    }
+
+    // .card-section-content{
+    //     padding: 5px 10px;
+    //     background-color: #f7f7f7;
+    //     border-radius: 5px;
+    //     border: 1px solid rgba(0, 0, 0, 0.1);
+    // }
+    .section--wrapper {
         margin-bottom: 10px;
 
-        &:last-child{
+        &:last-child {
             margin-bottom: 0;
         }
-        p{
-            margin:0;
+
+        // p{
+        //     margin:0;
+        // }
+        .input-group {
+            .input-group-text {
+                padding: 6px 10px;
+                border-top-right-radius: 6px !important;
+                border-bottom-right-radius: 6px !important;
+            }
         }
     }
-    .action-btn-wrapper{
+
+    .action-btn-wrapper {
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-left:auto;
+        margin-left: auto;
     }
 
 
@@ -63,17 +120,31 @@
         z-index: 2;
     }
 
-    td,th{
+    td,
+    th {
         white-space: nowrap;
         vertical-align: middle;
     }
 }
 
-.create-page--wrapper {
+.create-page--wrapper,.update-page--wrapper {
     height: 100%;
     padding: 30px 0;
 
     .sumbit-btn--wrapper {
         display: flex;
     }
+}
+
+/* Add to your global CSS file or module */
+.custom-toast-width {
+ width: fit-content !important;
+    max-width: 90vw;
+    margin: 10px auto 0;
+    padding: 10px 16px !important;
+    backdrop-filter: blur(4px);
+    border-radius: 10px !important;
+    overflow: hidden;
+     font-family: "Work Sans", serif !important;
+         --toastify-toast-min-height:20px;
 }

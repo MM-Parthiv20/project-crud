@@ -39,8 +39,9 @@ const Update = () => {
 
     return (
         <>
-            <h1>Update</h1>
-            <form >
+        <div className='update-page--wrapper'>
+            <h1 className='text-center'>Update</h1>
+            <form>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Name</label>
                     <input type="text" className="form-control" value={fname}
@@ -61,10 +62,14 @@ const Update = () => {
                     <textarea className="form-control" value={description} aria-describedby="emailHelp"
                         onChange={(e) => setDescription(e.target.value)} />
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleUpdate}>Update</button>
 
+                <div className='sumbit-btn--wrapper'>
+                    <Link className='btn btn-success' to="/read">Go to read</Link>
+                    <button type="submit" className="btn btn-primary ms-auto" onClick={handleUpdate}>Update</button>
+                </div>
             </form>
-            <Link to="/read">Go to read</Link>
+            </div>
+
 
         </>
     )

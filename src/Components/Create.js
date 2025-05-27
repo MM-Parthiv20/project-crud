@@ -8,6 +8,17 @@ const Create = () => {
   const [password, setPassword] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
+  const [emailError, setEmailError] = useState("");
+
+  const validateEmail = (value) => {
+    setEmail(value);
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regex.test(value)) {
+      setEmailError("Please enter a valid email address.");
+    } else {
+      setEmailError("");
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,10 +34,10 @@ const Create = () => {
         //     authorization: "your token comes here",
         // },
       })
-      // alert("Data Successfully Submitted")
-      .then(() => {
-        navigate("/read");
-      });
+        // alert("Data Successfully Submitted")
+        .then(() => {
+          navigate("/read");
+        });
 
     }
     else {
@@ -37,35 +48,44 @@ const Create = () => {
   };
   return (
     <>
-    <div class="create-page--wrapper">
-      <h1 class="text-center">Create</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Name</label>
-          <input type="text" className="form-control"
-            onChange={(e) => setFname(e.target.value)} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-          <input type="email" className="form-control" aria-describedby="emailHelp"
-            onChange={(e) => setEmail(e.target.value)} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">Password</label>
-          <input type="password" className="form-control" aria-describedby="emailHelp"
-            onChange={(e) => setPassword(e.target.value)} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">Description</label>
-          <textarea type="text" className="form-control" aria-describedby="emailHelp"
-            onChange={(e) => setDescription(e.target.value)} />
-        </div>
-        <div className='sumbit-btn--wrapper'>
-        <Link to="/read" className="btn btn-success">Go to read</Link>
-        <button type="submit" className="btn btn-primary ms-auto" onClick={handleSubmit}>Submit</button>
-        </div>
-      </form>
-     
+      <div class="create-page--wrapper">
+        <h1 class="text-center">Create</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Name</label>
+            <input type="text" className="form-control"
+              onChange={(e) => setFname(e.target.value)} />
+          </div>
+
+
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+            <input type="email"
+              className={`form-control ${emailError ? "is-invalid" : ""}`}
+              value={email}
+              onChange={(e) => validateEmail(e.target.value)} aria-describedby="emailHelp" required />
+          </div>
+          {emailError && <div className="invalid-feedback">{emailError}</div>}
+
+
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Password</label>
+            <input type="password" className="form-control" aria-describedby="emailHelp"
+              onChange={(e) => setPassword(e.target.value)} required />
+          </div>
+
+          
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Description</label>
+            <textarea type="text" className="form-control" aria-describedby="emailHelp"
+              onChange={(e) => setDescription(e.target.value)} />
+          </div>
+          <div className='sumbit-btn--wrapper'>
+            <Link to="/read" className="btn btn-success">Go to read</Link>
+            <button type="submit" className="btn btn-primary ms-auto" onClick={handleSubmit}>Submit</button>
+          </div>
+        </form>
+
       </div>
 
     </>
